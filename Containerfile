@@ -1,25 +1,22 @@
-FROM quay.io/archlinux/archlinux
-
-# Configure pacman to allow lib32 (required for Wine) and install required packages
-RUN echo -e '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
-    pacman-key --init && \
-    pacman-key --populate archlinux && \
-    pacman -Syu --quiet --noconfirm wine lib32-gnutls xorg-server-xvfb && \
-    pacman -Scc --quiet --noconfirm
+FROM localhost/winepackage
 
 # Configure app user
-RUN useradd -r -u 1001 -g 0 halo && \
-    mkdir -p /opt/app-root/{maps,logs,data,.wine} && \
+RUN useradd -u 1001 -g 0 halo && \
+    mkdir -p /opt/app-root/maps \
+             /opt/app-root/logs \
+             /opt/app-root/data \
+             /opt/app-root/.cache \
+             /opt/app-root/.wine && \
     chown -R 1001:0 /opt/app-root && \
     chmod -R g=u /opt/app-root
 
 ENV WINEPREFIX=/opt/app-root/.wine \
-    WINEARCH=win32 \
-    WINEDEBUG=-all
+    WINEDEBUG=-all \
+    HOME=/opt/app-root
 
 # Add Gandanur
-ADD GandanurCE-v14.7.0-unrestricted.tar.xz /opt/app-root/
 USER 1001
+ADD GandanurCE-v14.7.0-unrestricted.tar.xz /opt/app-root/
 WORKDIR /opt/app-root
 
 # Add entrypoint script
