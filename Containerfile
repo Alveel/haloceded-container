@@ -1,4 +1,4 @@
-FROM localhost/wine
+FROM ghcr.io/alveel/lean-wine:main
 
 ENV WINEPREFIX=/opt/app-root/.wine \
     WINEDEBUG=-all \
@@ -17,6 +17,7 @@ RUN useradd -u 1001 -g 0 halo && \
 # Add Gandanur
 USER 1001
 ADD GandanurCE-v14.7.0-unrestricted.tar.xz /opt/app-root/
+
 WORKDIR /opt/app-root
 
 # Add entrypoint script
