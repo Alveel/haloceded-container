@@ -12,7 +12,8 @@ In short, assuming directory `$HALODIR` contains a `maps` and `data` directory, 
 podman run --init -d -i -t --rm \
   --name halo \
   -v $HALODIR/maps:/opt/app-root/maps \
-  -v $HALODIR/data:/opt/app-root/data -p 2302:2302 -p 2303:2303 \
+  -v $HALODIR/data:/opt/app-root/data \
+  -p 2302:2302/udp -p 2303:2303/udp \
   ghcr.io/alveel/haloceded-container:main
 ```
 
@@ -32,4 +33,11 @@ TODO: I should probably add a compose file or something.
 | `/opt/app-root/maps` | Here (default & custom) maps must be mounted, including `bitmaps.map` etc. |
 | `/opt/app-root/data` | init.txt, save games, and Gandanur configuration is stored here            |
 | `/opt/app-root/logs` | For output logs                                                            |
+
+## Notes
+
+Inspired by several existing solutions that use pre-built Wine distributions:
+
+- [docker-haloce-sapp](https://github.com/AugusDogus/docker-haloce-sapp) by AugusDogus
+- [Halo CE dedicated server dockerized](https://github.com/antimomentum/haloce) by antimomentum
 
