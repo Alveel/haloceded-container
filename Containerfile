@@ -7,7 +7,6 @@ ENV WINEPREFIX=/opt/app-root/.wine \
 # Configure app user
 RUN useradd -u 1001 -g 0 halo && \
     mkdir -p /opt/app-root/maps \
-             /opt/app-root/logs \
              /opt/app-root/data \
              /opt/app-root/.cache \
              /opt/app-root/.wine && \
@@ -27,7 +26,7 @@ ADD --chmod=755 entrypoint.sh /usr/bin/
 EXPOSE 2302/udp 2303/udp
 
 # Expose used volumes
-VOLUME ["/opt/app-root/maps", "/opt/app-root/logs", "/opt/app-root/data"]
+VOLUME ["/opt/app-root/maps", "/opt/app-root/data"]
 
 # Prepare the Wine environment
 RUN winecfg

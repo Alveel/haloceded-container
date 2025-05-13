@@ -28,11 +28,10 @@ TODO: I should probably add a compose file or something.
 
 ## Volume mounts
 
-| Mount                | Description                                                                |
-|----------------------|----------------------------------------------------------------------------|
-| `/opt/app-root/maps` | Here (default & custom) maps must be mounted, including `bitmaps.map` etc. |
-| `/opt/app-root/data` | init.txt, save games, and Gandanur configuration is stored here            |
-| `/opt/app-root/logs` | For output logs                                                            |
+| Mount                | Description                                      |
+|----------------------|--------------------------------------------------|
+| `/opt/app-root/maps` | Halo maps, including defaults like `bitmaps.map` |
+| `/opt/app-root/data` | init.txt, save games, logs, and Gandanur config  |
 
 ## Notes
 
