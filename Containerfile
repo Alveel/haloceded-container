@@ -1,4 +1,4 @@
-FROM ghcr.io/alveel/lean-wine:main
+FROM ghcr.io/alveel/lean-wine:main@sha256:20842b1e02bd1d25c57aef1453a32ff13e7b77ae6fc5fe23acb1b2af0181e497
 
 ENV WINEPREFIX=/opt/app-root/.wine \
     WINEDEBUG=-all \
